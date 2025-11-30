@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="À propos de l'outil d'audit de conformité SME - Genèse, Charte Arcom 2011, mission">
+    <meta name="keywords" content="sous-titrage SME, Charte Arcom, accessibilité, audit CPS">
+    <title>À propos - Lisibilité SME</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1a365d; 
+            --accent: #2E7D32;  
+            --text: #334155;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 70px 20px;
+            text-align: center;
+            margin-bottom: -40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.9;
+            font-family: 'Merriweather', serif;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 35px 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            margin-top: 30px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 3rem;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        p { 
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 14px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding: 30px 20px 20px;
+            margin-top: 30px;
+            color: #64748b;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { 
+            color: var(--accent);
+            text-decoration: underline; 
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .contact-box p {
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 50px 20px; }
+            h1 { font-size: 1.8rem; }
+            section { padding: 25px 20px; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container" style="padding-bottom: 0;">
+            <h1>À PROPOS</h1>
+            <p class="subtitle">Genèse et mission de l'outil</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+        <section>
+            
+            <h2>Genèse du projet</h2>
+            
+            <p>Cet outil est né d'un constat simple : la Charte Arcom 2011 définit des seuils de lisibilité pour les sous-titres SME, mais aucun outil public ne permet de les vérifier objectivement.</p>
+
+            <h2>La Charte Arcom 2011</h2>
+            
+            <p>La <em>Charte relative à la qualité du sous-titrage à destination des personnes sourdes ou malentendantes</em> a été élaborée en 2011 par le CSA (devenu Arcom) avec les acteurs de l'audiovisuel et les associations de personnes sourdes.</p>
+            
+            <p>Elle fixe notamment un standard de confort à <strong>12 caractères par seconde</strong>, avec une tolérance de 20% (soit <strong>~15 CPS</strong>).</p>
+            
+            <p>Ces seuils correspondent au temps de lecture nécessaire pour déchiffrer le texte, le comprendre et l'intégrer avec l'action à l'écran.</p>
+
+            <h2>Mission de l'outil</h2>
+            
+            <ul>
+                <li>Objectiver la conformité des fichiers selon l'article 6 de la Charte</li>
+                <li>Rendre le contrôle accessible à tous (gratuit, sans inscription)</li>
+                <li>Encourager la transparence (code source ouvert, méthode documentée)</li>
+                <li>Permettre aux associations de personnes sourdes d'auditer la qualité réelle</li>
+            </ul>
+
+            <h2>Contact</h2>
+            
+            <div class="contact-box">
+                <p><strong>Email :</strong> <a href="mailto:contact@lisibilite-sme.fr">contact@lisibilite-sme.fr</a></p>
+            </div>
+
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="index.html">Accueil</a>
+                <a href="methodologie.html">Méthodologie</a>
+                <a href="confidentialite.html">Confidentialité</a>
+                <a href="https://github.com/Alyoukaidi/lisibilite-sme" target="_blank">Code source (GitHub)</a>
+            </div>
+            
+            <div class="footer-contact">
+                <p><strong>Contact :</strong> contact@lisibilite-sme.fr</p>
+                <p style="margin-top: 15px; font-size: 0.85rem; color: #94a3b8;">
+                    Outil open source · Version 1.0 · Novembre 2025
+                </p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
