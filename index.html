@@ -6,299 +6,348 @@
     <meta name="description" content="Outil gratuit d'audit de conformité SME selon la Charte Arcom 2011. Analysez la densité de lecture (CPS) de vos fichiers de sous-titres.">
     <meta name="keywords" content="sous-titrage, SME, accessibilité, CPS, Charte Arcom, lisibilité, audit">
     <title>Lisibilité SME - Audit de conformité Charte Arcom 2011</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary: #1a365d; 
+            --accent: #2E7D32;  
+            --warning-bg: #fff7ed;
+            --warning-border: #ea580c;
+            --text: #334155;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.7;
-            color: #333;
-            background: #f5f5f5;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
         }
-        
+
+        /* --- LAYOUT --- */
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px 60px;
         }
-        
-        /* Header */
+
+        /* --- HEADER --- */
         header {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            background: var(--primary);
+            color: white;
+            padding: 70px 20px;
             text-align: center;
+            margin-bottom: -40px;
         }
-        
+
         h1 {
-            font-size: 2.8rem;
-            color: #2E7D32;
-            margin-bottom: 15px;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
             letter-spacing: -0.5px;
+            line-height: 1.2;
         }
-        
+
         .subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            font-weight: 400;
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.9;
+            font-family: 'Merriweather', serif;
         }
-        
-        /* Sections */
+
+        /* --- SECTIONS (CARTES) --- */
         section {
-            background: white;
+            background: var(--card-bg);
             padding: 35px 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 20px;
+            position: relative;
         }
-        
+
         h2 {
-            color: #2E7D32;
-            margin-bottom: 25px;
-            font-size: 1.9rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
             font-weight: 700;
+            position: relative;
+            padding-bottom: 12px;
         }
-        
-        p {
-            margin-bottom: 18px;
-            color: #444;
-            font-size: 1.05rem;
+
+        /* Underline courte élégante (Grok) */
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 3rem;
+            height: 3px;
+            background: var(--accent);
         }
-        
-        /* Intro texte (chapô) */
+
+        p { 
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        /* --- INTRO BLOCK --- */
         .intro {
             font-size: 1.1rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 30px;
+            color: #1e293b;
+            line-height: 1.7;
+            border-left: 5px solid var(--accent);
+            padding-left: 25px;
+            margin: 0 -40px;
+            padding-right: 40px;
+            background: linear-gradient(to right, #f0fdf4, #ffffff);
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* --- WARNING BOX (arrondie, Grok) --- */
+        .warning {
+            background: var(--warning-bg);
             padding: 20px;
-            background: #f9f9f9;
-            border-left: 4px solid #2E7D32;
-            border-radius: 4px;
+            border-left: 5px solid var(--warning-border);
+            border-radius: 0.5rem; /* Arrondi comme Grok */
+            margin: 20px 0;
+            font-size: 1rem;
         }
-        
-        /* Zone image capture */
+
+        .warning p { text-align: justify; }
+        .warning strong { color: #c2410c; }
+
+        /* --- LAYOUT DEUX COLONNES pour "Ce que l'outil révèle" (GPT) --- */
+        .reveal-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr; /* Texte légèrement plus large */
+            gap: 30px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        /* --- SCREENSHOT ZONE --- */
         .screenshot {
-            margin: 30px 0;
+            margin: 0;
             text-align: center;
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
         }
-        
+
         .screenshot img {
             max-width: 100%;
             height: auto;
-            border-radius: 6px;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            box-shadow: var(--shadow-md);
+            display: block;
+            margin: 0 auto;
+            cursor: pointer; /* Indique que l'image est cliquable */
+            transition: transform 0.2s;
         }
-        
-        .caption {
-            margin-top: 15px;
-            font-size: 0.95rem;
-            color: #666;
-            font-style: italic;
+
+        .screenshot img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Texte explicatif (colonne gauche) */
+        .image-note {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--text);
+            text-align: left;
             line-height: 1.6;
         }
-        
-        .caption strong {
-            color: #2E7D32;
-            font-style: normal;
+
+        .image-note strong { color: var(--primary); }
+
+        .image-note a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            white-space: nowrap;
         }
-        
-        /* Warning box */
-        .warning {
-            background: #FFF3E0;
-            padding: 20px;
-            border-left: 4px solid #EF6C00;
-            margin: 25px 0;
-            border-radius: 4px;
-            font-size: 1.05rem;
-        }
-        
-        .warning strong {
-            color: #EF6C00;
-        }
-        
-        /* Liste publics cibles */
+
+        .image-note a:hover { text-decoration: underline; }
+
+        /* --- AUDIENCE LIST (GRID) --- */
         .audience-list {
             list-style: none;
-            margin: 25px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
-        
+
         .audience-list li {
-            margin-bottom: 20px;
-            padding-left: 0;
+            background: #f8fafc;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+            text-align: left;
+            box-shadow: var(--shadow-sm);
         }
-        
+
+        .audience-list li:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
         .audience-list strong {
-            color: #2E7D32;
-            font-size: 1.1rem;
+            color: var(--primary);
+            font-size: 1.05rem;
             display: block;
             margin-bottom: 5px;
         }
-        
-        .audience-list li::before {
-            content: "→ ";
-            color: #2E7D32;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        
-        /* CTA Button */
+
+        /* --- CTA BUTTON --- */
         .cta-section {
             text-align: center;
-            padding: 50px 40px;
+            background: transparent;
+            box-shadow: none;
+            padding: 10px 0 20px;
         }
-        
+
         .cta-button {
             display: inline-block;
-            background: #2E7D32;
+            background: var(--accent);
             color: white;
             padding: 20px 50px;
             font-size: 1.3rem;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 10px 25px -5px rgba(46, 125, 50, 0.4);
         }
-        
+
         .cta-button:hover {
-            background: #1B5E20;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(46, 125, 50, 0.4);
+            background: #1b5e20;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(46, 125, 50, 0.5);
         }
-        
-        /* Footer */
+
+        /* --- FOOTER --- */
         footer {
-            background: white;
-            padding: 35px 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-top: 40px;
             text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding: 30px 20px 20px;
+            margin-top: 30px;
+            color: #64748b;
+            background: #f8fafc;
+            border-radius: 12px;
         }
-        
+
         .footer-links {
-            margin: 25px 0;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
-        
+
         .footer-links a {
-            color: #2E7D32;
+            color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
+            font-size: 0.9rem;
+            transition: color 0.2s;
         }
-        
-        .footer-links a:hover {
-            color: #1B5E20;
-            text-decoration: underline;
+
+        .footer-links a:hover { 
+            color: var(--accent);
+            text-decoration: underline; 
         }
-        
-        .footer-contact {
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid #e0e0e0;
-            color: #666;
-            font-size: 0.95rem;
-        }
-        
-        /* Responsive */
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            .container {
-                padding: 20px 15px;
-            }
-            
-            section {
-                padding: 25px 20px;
-            }
-            
-            header {
-                padding: 35px 25px;
-            }
-            
-            .cta-button {
-                padding: 18px 35px;
-                font-size: 1.1rem;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 15px;
+            header { padding: 50px 20px; }
+            h1 { font-size: 1.8rem; }
+            section { padding: 25px 20px; margin-bottom: 15px; }
+            .cta-button { width: 100%; padding: 18px; font-size: 1.1rem; }
+            .intro { margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
+            .audience-list { grid-template-columns: 1fr; }
+            .reveal-layout { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- HEADER -->
-        <header>
+
+    <header>
+        <div class="container" style="padding-bottom: 0;">
             <h1>AUDIT DE CONFORMITÉ SME</h1>
             <p class="subtitle">Analyse de densité selon la Charte Arcom 2011</p>
-        </header>
+        </div>
+    </header>
 
-        <!-- INTRO (Qu'est-ce que l'outil) -->
+    <div class="container">
+
+        <!-- INTRO -->
         <section>
             <div class="intro">
-                Cet outil analyse la <strong>densité de lecture</strong> (CPS - Caractères Par Seconde) des fichiers de sous-titres SME. Il produit un rapport visuel qui permet de vérifier si dans son ensemble, le sous-titrage d'un programme respecte les seuils de lisibilité définis par la Charte relative à la qualité du sous-titrage à destination des personnes sourdes ou malentendantes.
+                Cet outil <strong>open source</strong> analyse la <strong>densité de lecture</strong> (CPS - Caractères Par Seconde) des fichiers de sous-titres SME. Il produit un rapport visuel qui permet de vérifier si le sous-titrage respecte les seuils de lisibilité définis par la <em>Charte relative à la qualité du sous-titrage à destination des personnes sourdes ou malentendantes</em>.
             </div>
+        </section>
+
+        <!-- CTA (en haut pour les pressés) -->
+        <section class="cta-section">
+            <a href="https://lisibilite-sme.streamlit.app" target="_blank" class="cta-button">
+                📊 Analyser un fichier
+            </a>
         </section>
 
         <!-- POURQUOI CETTE MESURE COMPTE -->
         <section>
             <h2>Le CPS : pourquoi cette mesure compte</h2>
             
-            <p>La loi handicap de 2005 impose l'accessibilité, pas seulement l'affichage de texte.</p>
+            <p>La <strong>loi handicap de 2005</strong> impose l'<strong>accessibilité</strong>, pas seulement l'affichage de texte. Si le texte défile trop vite trop longtemps, sa lecture épuise et empêche le public sourd de compenser le déficit sonore par l'observation de l'image (action, expressions faciales, mouvements de lèvres).</p>
             
-            <p>Le public sourd ne fait pas que lire. Il doit simultanément déchiffrer le texte, suivre l'action visuelle et observer les expressions faciales pour la lecture labiale.</p>
+            <p>La Charte Arcom 2011 fixe à <strong>12 caractères par seconde</strong> le standard de confort, avec une tolérance de 20% (soit <strong>~15 CPS maximum</strong>). Ces seuils correspondent au temps de lecture nécessaire pour déchiffrer le texte, le comprendre et l'intégrer avec ce qui se passe à l'écran.</p>
             
-            <p>Si le texte défile trop vite trop longtemps, cette double tâche cognitive épuise, puis échoue.</p>
-            
-            <p>La Charte Arcom 2011 fixe à 12 caractères par seconde le standard de confort, avec une tolérance de 20% (soit ~15 CPS maximum). Ces seuils correspondent au temps de lecture nécessaire pour déchiffrer le texte, le comprendre et l'intégrer avec ce qui se passe à l'écran.</p>
-            
-            <p>Au-delà de 15 CPS, la surcharge cognitive rend l'accès au programme difficile pour les personnes sourdes de naissance, les personnes devenues sourdes ou malentendantes, les personnes dyslexiques et les personnes avec troubles de l'attention.</p>
+            <p>Au-delà de 15 CPS, l'accès au programme devient difficile pour les personnes sourdes de naissance, les personnes devenues sourdes ou malentendantes, les personnes dyslexiques et les personnes avec troubles de l'attention.</p>
             
             <div class="warning">
-                <p><strong>⚠️ Validisme :</strong> Considérer qu'un sous-titrage est "suffisant" parce qu'il est lisible pour un entendant (lecteur fluent) revient à ignorer les besoins du public concerné. L'accessibilité exige un temps de lecture adapté aux capacités réelles de lecture, pas à celles des valides.</p>
+                <p><strong>⚠️ Validisme :</strong> Considérer qu'un sous-titrage est "suffisant" parce qu'il est lisible pour un lecteur fluent revient à ignorer les besoins du public concerné. L'accessibilité exige un temps de lecture adapté aux capacités réelles de lecture.</p>
             </div>
         </section>
 
-        <!-- CE QUE L'OUTIL RÉVÈLE -->
+        <!-- CE QUE L'OUTIL RÉVÈLE (LAYOUT 2 COLONNES) -->
         <section>
             <h2>Ce que l'outil révèle</h2>
             
-            <p>L'outil produit un rapport visuel qui permet de voir en un coup d'œil si un fichier respecte les temps de lecture de la Charte.</p>
-            
-            <div class="screenshot">
-                <!-- PLACEHOLDER : remplace par ton image -->
-                <img src="affaire_conclue_screenshot.png" alt="Exemple de rapport d'audit - Affaire conclue, France 2" style="background: #f0f0f0; min-height: 300px; display: flex; align-items: center; justify-content: center;">
-                <!-- Si l'image n'est pas encore uploadée, tu peux temporairement mettre un placeholder gris -->
+            <div class="reveal-layout">
+                <!-- COLONNE GAUCHE : Texte -->
+                <div>
+                    <p>L'outil produit un rapport visuel qui permet de voir en un coup d'œil si un fichier respecte les temps de lecture de la Charte.</p>
+                    
+                    <div class="image-note">
+                        Il évalue le <strong>profil global</strong> d'un fichier, pas chaque sous-titre isolément. Un fichier peut être conforme avec quelques passages rapides justifiés, comme ici. <a href="limites-cps.html">→ Les limites du CPS</a>
+                    </div>
+                </div>
                 
-                <p class="caption">
-                    <strong>Exemple de fichier conforme</strong> : <em>Affaire conclue</em> (France 2, octobre 2025)<br>
-                    93% de sous-titres en zone de confort (vert), 6% en zone rapide (orange), moins de 1% en zone critique (rouge). Médiane à 12.9 CPS. Le profil montre qu'un plateau TV dense peut être adapté sans sacrifier la lisibilité.
-                </p>
+                <!-- COLONNE DROITE : Image cliquable -->
+                <div class="screenshot">
+                    <a href="affaire_conclue_screenshot.png" target="_blank" title="Cliquer pour agrandir">
+                        <img src="affaire_conclue_screenshot.png" alt="Rapport d'audit CPS - Affaire conclue">
+                    </a>
+                </div>
             </div>
-            
-            <p><strong>Ce qui alerte</strong> : Lorsqu'une proportion importante du fichier est en zone rouge (&gt;15%), cela indique généralement que le texte n'a pas été adapté pour respecter un temps de lecture suffisant.</p>
         </section>
 
         <!-- À QUI S'ADRESSE CET OUTIL -->
@@ -337,7 +386,7 @@
             </ul>
         </section>
 
-        <!-- CTA : CALL TO ACTION -->
+        <!-- CTA (en bas pour les convaincus) -->
         <section class="cta-section">
             <a href="https://lisibilite-sme.streamlit.app" target="_blank" class="cta-button">
                 📊 Analyser un fichier
@@ -354,12 +403,6 @@
             </div>
             
             <div class="footer-contact">
-                <p><strong>Contact :</strong> thierry@lisibilite-sme.fr</p>
-                <p style="margin-top: 15px; font-size: 0.9rem; color: #999;">
-                    Outil open source · Version 1.0 · Novembre 2025
-                </p>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+                <p><strong>Contact :</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8afee2e3eff8f8f3cae6e3f9e3e8e3e6e3feefa7f9e7efa4ecf8">[email&#160;protected]</a></p>
+                <p style="margin-top: 15px; font-size: 0.85rem; color: #94a3b8;">
+                    Outil op
