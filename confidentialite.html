@@ -1,29 +1,292 @@
-# Politique de confidentialité
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Politique de confidentialité - Outil d'audit de conformité SME">
+    <meta name="keywords" content="confidentialité, RGPD, données personnelles, sous-titrage SME">
+    <title>Confidentialité - Lisibilité SME</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 
-## Données collectées
+    <style>
+        :root {
+            --primary: #1a365d; 
+            --accent: #2E7D32;  
+            --text: #334155;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
 
-**Site web (lisibilite-sme.fr)** :
-- Statistiques de visite anonymisées (Cloudflare Analytics)
-- Aucune donnée personnelle collectée
-- Pas de cookies de tracking
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-**Outil d'analyse (Streamlit)** :
-- Les fichiers .srt sont traités en mémoire uniquement
-- Aucun fichier n'est enregistré sur le serveur
-- Aucune donnée n'est transmise à l'auteur
-- Les fichiers sont supprimés automatiquement à la fin de la session
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
 
-## Hébergement
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
 
-- Site web : GitHub Pages (États-Unis)
-- Outil d'analyse : Streamlit Cloud (États-Unis)
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 70px 20px;
+            text-align: center;
+            margin-bottom: -40px;
+        }
 
-## Conformité RGPD
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
 
-Ce site ne collecte aucune donnée personnelle et ne nécessite pas de bandeau cookies.
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.9;
+            font-family: 'Merriweather', serif;
+        }
 
-## Contact
+        section {
+            background: var(--card-bg);
+            padding: 35px 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 20px;
+        }
 
-Pour toute question : thierry@lisibilite-sme.fr
+        h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            margin-top: 30px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 12px;
+        }
 
-*Dernière mise à jour : 30 novembre 2025*
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 3rem;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p { 
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 14px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            text-align: justify;
+        }
+
+        .info-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .info-box p {
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding: 30px 20px 20px;
+            margin-top: 30px;
+            color: #64748b;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { 
+            color: var(--accent);
+            text-decoration: underline; 
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 50px 20px; }
+            h1 { font-size: 1.8rem; }
+            section { padding: 25px 20px; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container" style="padding-bottom: 0;">
+            <h1>POLITIQUE DE CONFIDENTIALITÉ</h1>
+            <p class="subtitle">Protection des données et respect de la vie privée</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+        <section>
+            
+            <h2>Principe général</h2>
+            
+            <p>Ce site et l'outil d'analyse CPS ont été conçus dans le respect de votre vie privée. Aucune donnée personnelle n'est collectée, aucun fichier n'est conservé.</p>
+
+            <h2>Traitement des fichiers</h2>
+            
+            <h3>Sur l'outil d'analyse (Streamlit)</h3>
+            
+            <ul>
+                <li>Les fichiers .srt sont traités <strong>en mémoire uniquement</strong></li>
+                <li><strong>Aucun fichier n'est enregistré</strong> sur le serveur</li>
+                <li><strong>Aucun contenu textuel n'est conservé</strong></li>
+                <li>Les fichiers sont <strong>automatiquement supprimés</strong> à la fin de votre session</li>
+                <li>Aucune donnée n'est transmise à l'auteur de l'outil</li>
+            </ul>
+
+            <div class="info-box">
+                <p><strong>🔒 Garantie technique :</strong> Les fichiers transitent par le serveur pour l'analyse, mais ne sont jamais écrits sur disque. Ils restent en mémoire vive (RAM) le temps du traitement, puis sont immédiatement effacés.</p>
+            </div>
+
+            <h2>Données collectées</h2>
+            
+            <h3>Sur le site web (lisibilite-sme.fr)</h3>
+            
+            <p><strong>Aucune donnée personnelle n'est collectée.</strong></p>
+            
+            <p>Le site peut collecter des statistiques de visite anonymisées (nombre de visites, pages consultées) via les outils d'hébergement, mais aucune donnée permettant de vous identifier n'est enregistrée.</p>
+
+            <h3>Sur l'outil d'analyse</h3>
+            
+            <p><strong>Aucune donnée personnelle n'est collectée.</strong></p>
+            
+            <p>L'application ne collecte aucune statistique d'usage, aucun cookie, aucune donnée analytique.</p>
+
+            <h2>Cookies</h2>
+            
+            <p>Ce site n'utilise <strong>aucun cookie</strong> de suivi ou de marketing.</p>
+            
+            <p>Les seuls cookies éventuellement présents sont des cookies techniques strictement nécessaires au fonctionnement de l'application Streamlit (gestion de session), qui sont automatiquement supprimés à la fermeture de votre navigateur.</p>
+
+            <h2>Hébergement</h2>
+            
+            <ul>
+                <li><strong>Site web :</strong> GitHub Pages (Microsoft, États-Unis)</li>
+                <li><strong>Outil d'analyse :</strong> Streamlit Cloud (Snowflake, États-Unis)</li>
+            </ul>
+            
+            <p>Ces services sont conformes aux standards internationaux de sécurité. Aucune donnée personnelle n'étant collectée, le RGPD (Règlement Général sur la Protection des Données) ne s'applique pas.</p>
+
+            <h2>Vos droits</h2>
+            
+            <p>Conformément au RGPD, vous disposez de droits sur vos données personnelles (accès, rectification, suppression, portabilité, opposition).</p>
+            
+            <p><strong>Dans le cas de ce site et de cet outil, aucune donnée personnelle n'étant collectée, ces droits n'ont pas lieu de s'exercer.</strong></p>
+
+            <h2>Contact</h2>
+            
+            <p>Pour toute question concernant cette politique de confidentialité :</p>
+            
+            <p><strong>Email :</strong> <a href="mailto:thierry@lisibilite-sme.fr">thierry@lisibilite-sme.fr</a></p>
+
+            <h2>Modifications</h2>
+            
+            <p>Cette politique de confidentialité peut être modifiée à tout moment pour refléter les évolutions du site ou de la réglementation.</p>
+            
+            <p><strong>Dernière mise à jour :</strong> 30 novembre 2025</p>
+
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="index.html">Accueil</a>
+                <a href="methodologie.html">Méthodologie</a>
+                <a href="a-propos.html">À propos</a>
+                <a href="https://github.com/Alyoukaidi/lisibilite-sme" target="_blank">Code source (GitHub)</a>
+            </div>
+            
+            <div class="footer-contact">
+                <p><strong>Contact :</strong> thierry@lisibilite-sme.fr</p>
+                <p style="margin-top: 15px; font-size: 0.85rem; color: #94a3b8;">
+                    Outil open source · Version 1.0 · Novembre 2025
+                </p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
