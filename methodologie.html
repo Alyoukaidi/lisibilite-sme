@@ -419,7 +419,7 @@
 <body>
 
     <header>
-        <div class="container" style="padding-bottom: 0;">
+        <div class="container" style="padding-bottom: 0; text-align: left;">
             <h1>MÉTHODOLOGIE</h1>
             <p class="subtitle">Fonctionnement technique et limites de l'outil</p>
         </div>
@@ -565,7 +565,7 @@ CPS : 30 ÷ 2,5 = 12,0 CPS</code></pre>
         <!-- ============================================
              SECTION 3 : Les limites du CPS
         ============================================ -->
-        <details class="faq-item">
+        <details class="faq-item" id="limites-cps">
             <summary>Les limites du CPS</summary>
             <div class="faq-content">
                 
@@ -609,7 +609,7 @@ CPS : 30 ÷ 2,5 = 12,0 CPS</code></pre>
         <!-- ============================================
              SECTION 4 : Le script de caviardage
         ============================================ -->
-        <details class="faq-item">
+        <details class="faq-item" id="caviardage">
             <summary>Le script de caviardage</summary>
             <div class="faq-content">
                 
@@ -649,6 +649,8 @@ XXXXXXX  XXXXXXX XXXXX-XXXX X</code></pre>
         <footer>
             <div class="footer-links">
                 <a href="index.html">Accueil</a>
+                <a href="app.html">Analyser un fichier</a>
+                <a href="methodologie.html">Méthodologie</a>
                 <a href="a-propos.html">À propos</a>
                 <a href="confidentialite.html">Confidentialité</a>
                 <a href="https://github.com/Alyoukaidi/cps-analyzer" target="_blank">Code source (GitHub)</a>
@@ -656,6 +658,20 @@ XXXXXXX  XXXXXXX XXXXX-XXXX X</code></pre>
         </footer>
 
     </div>
+
+    <script>
+        // Ouvrir automatiquement l'accordéon ciblé par l'ancre URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const target = document.querySelector(hash);
+                if (target && target.tagName === 'DETAILS') {
+                    target.open = true;
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>
