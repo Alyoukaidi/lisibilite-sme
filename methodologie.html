@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Méthodologie de l'outil d'audit CPS - Fonctionnement, catégories, script de caviardage, limites">
+    <meta name="keywords" content="CPS, méthodologie, audit SME, caviardage, limites">
+    <title>Méthodologie - Lisibilité SME</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1a365d; 
+            --accent: #2E7D32;  
+            --text: #334155;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 70px 20px;
+            text-align: center;
+            margin-bottom: -40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.9;
+            font-family: 'Merriweather', serif;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            margin-top: 60px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           ACCORDÉON FAQ
+        ============================================ */
+        
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
+        }
+
+        .faq-item summary {
+            cursor: pointer;
+            padding: 20px 25px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .faq-item summary:hover {
+            background: #f8fafc;
+        }
+
+        .faq-item summary::after {
+            content: '▼';
+            font-size: 0.9rem;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-content {
+            padding: 0 25px 25px 25px;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           TYPOGRAPHIE DANS L'ACCORDÉON
+        ============================================ */
+
+        .faq-content h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .faq-content p {
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        .faq-content ul, .faq-content ol {
+            margin-left: 20px;
+            margin-bottom: 14px;
+        }
+
+        .faq-content li {
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        /* Code inline */
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #334155;
+        }
+
+        /* Bloc de code */
+        pre {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        /* ============================================
+           BOXES
+        ============================================ */
+
+        .info-box {
+            background: #f0fdf4;
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .info-box-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            margin-top: 2px;
+        }
+
+        .info-box p {
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        .info-box p + p {
+            margin-top: 10px;
+        }
+
+        .info-box a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+
+        .warning-box {
+            background: #fff7ed;
+            border-left: 5px solid #ea580c;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .warning-box p {
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        /* Citations / Exemples */
+        blockquote {
+            background: #f8fafc;
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+
+        blockquote p {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ============================================
+           TABLEAU CPS
+        ============================================ */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover td {
+            background: #f8fafc;
+        }
+
+        /* Colonne couleur : largeur fixe */
+        td:nth-child(3) {
+            width: 200px;
+            padding: 8px;
+        }
+
+        /* Colonne évaluation */
+        .eval-cell {
+            vertical-align: middle;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .eval-green { color: #00a000; }
+        .eval-orange { color: #d07000; }
+        .eval-red { color: #c00000; }
+
+        /* Espacements entre groupes via padding */
+        .group-bottom td {
+            padding-bottom: 18px;
+        }
+
+        .group-single td {
+            padding-top: 18px;
+            padding-bottom: 18px;
+        }
+
+        .group-top td {
+            padding-top: 18px;
+        }
+
+        /* Nuanciers de couleur (dégradés) */
+        .color-swatch {
+            height: 30px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .color-1 { background: #00d000; }
+        .color-2 { background: linear-gradient(to right, #00d000, #a0f0a0); }
+        .color-3 { background: linear-gradient(to right, #a0f0a0, #ffe664); }
+        .color-4 { background: linear-gradient(to right, #ffe664, #ff8c00); }
+        .color-5 { background: linear-gradient(to right, #ff8c00, #ff0000); }
+        .color-6 { background: linear-gradient(to right, #ff0000, #960000); }
+        .color-7 { background: #3c0000; }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+
+        footer {
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding: 30px 20px 20px;
+            margin-top: 30px;
+            color: #64748b;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { 
+            color: var(--accent);
+            text-decoration: underline; 
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+
+        @media (max-width: 768px) {
+            header { padding: 50px 20px; }
+            h1 { font-size: 1.8rem; }
+            
+            .faq-item summary {
+                font-size: 1.1rem;
+                padding: 18px 20px;
+            }
+            
+            .faq-content {
+                padding: 0 20px 20px 20px;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            td:nth-child(3) {
+                width: 150px;
+            }
+
+            td:nth-child(4) {
+                width: 110px;
+                font-size: 0.85rem;
+            }
+
+            .color-swatch {
+                height: 25px;
+            }
+
+            pre {
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container" style="padding-bottom: 0;">
+            <h1>MÉTHODOLOGIE</h1>
+            <p class="subtitle">Fonctionnement technique et limites de l'outil</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+        <!-- ============================================
+             SECTION 1 : Comment fonctionne l'analyse
+        ============================================ -->
+        <details class="faq-item">
+            <summary>Comment fonctionne l'analyse</summary>
+            <div class="faq-content">
+                
+                <p>L'outil analyse les fichiers de sous-titres aux formats <strong>SRT</strong> et <strong>VTT</strong>.</p>
+
+                <h3>Parsing du fichier</h3>
+                
+                <p>Le fichier est découpé en blocs, chaque bloc correspondant à un sous-titre et contenant :</p>
+                
+                <ul>
+                    <li>Un numéro de séquence</li>
+                    <li>Un timecode de début et de fin (<code>00:01:23,456 --> 00:01:25,789</code>)</li>
+                    <li>Une ou plusieurs lignes de texte</li>
+                </ul>
+
+                <h3>Calcul du CPS</h3>
+                
+                <p>Pour chaque sous-titre, l'outil calcule :</p>
+                
+                <ol>
+                    <li><strong>La durée d'affichage</strong> : différence entre le timecode de fin et le timecode de début (en secondes)</li>
+                    <li><strong>Le nombre de caractères</strong> : nombre total de caractères du texte (espaces compris, balises HTML exclues)</li>
+                    <li><strong>Le CPS</strong> : nombre de caractères ÷ durée d'affichage</li>
+                </ol>
+
+                <p><strong>Exemple :</strong></p>
+                <pre><code>Texte : Bonjour, quelle heure est-il ? (30 caractères)
+Durée : 2,5 secondes
+CPS : 30 ÷ 2,5 = 12,0 CPS</code></pre>
+
+                <h3>Exclusion des indications sonores ou musicales</h3>
+                
+                <p>Les indicateurs <code>...</code> et <code>♪</code> sont exclus de l'analyse car ils ne contiennent pas de texte à lire et fausseraient les statistiques par leur durée d'affichage.</p>
+
+                <div class="info-box">
+                    <!-- Picto SVG Chart -->
+                    <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="#2E7D32" stroke-width="2"/>
+                        <path d="M7 17V12M12 17V7M17 17V10" stroke="#2E7D32" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <p><strong>Rapport visuel :</strong> L'outil génère un rapport HTML avec un code couleur (vert/orange/rouge) permettant de visualiser instantanément le degré de lisibilité du fichier.</p>
+                </div>
+
+            </div>
+        </details>
+
+        <!-- ============================================
+             SECTION 2 : Les catégories CPS
+        ============================================ -->
+        <details class="faq-item">
+            <summary>Les catégories CPS</summary>
+            <div class="faq-content">
+                
+                <p>L'outil classe chaque sous-titre dans l'une des 7 catégories suivantes :</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Catégorie</th>
+                            <th>Plage CPS</th>
+                            <th>Couleur</th>
+                            <th style="width: 140px; text-align: center;">Évaluation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Optimal</strong></td>
+                            <td>≤ 12 CPS</td>
+                            <td><div class="color-swatch color-1"></div></td>
+                            <td rowspan="3" class="eval-cell eval-green">
+                                <span class="eval-label">Confortable</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Très lisible</strong></td>
+                            <td>12 à 15 CPS</td>
+                            <td><div class="color-swatch color-2"></div></td>
+                        </tr>
+                        <tr class="group-bottom">
+                            <td><strong>3. Lisible</strong></td>
+                            <td>15 à 17 CPS</td>
+                            <td><div class="color-swatch color-3"></div></td>
+                        </tr>
+                        <tr class="group-single">
+                            <td><strong>4. Rapide</strong></td>
+                            <td>17 à 19 CPS</td>
+                            <td><div class="color-swatch color-4"></div></td>
+                            <td class="eval-cell eval-orange">
+                                <span class="eval-label">Inconfortable</span>
+                            </td>
+                        </tr>
+                        <tr class="group-top">
+                            <td><strong>5. Très rapide</strong></td>
+                            <td>19 à 23 CPS</td>
+                            <td><div class="color-swatch color-5"></div></td>
+                            <td rowspan="3" class="eval-cell eval-red">
+                                <span class="eval-label">Problématique</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>6. Trop rapide</strong></td>
+                            <td>23 à 28 CPS</td>
+                            <td><div class="color-swatch color-6"></div></td>
+                        </tr>
+                        <tr>
+                            <td><strong>7. Beaucoup trop rapide</strong></td>
+                            <td>> 28 CPS</td>
+                            <td><div class="color-swatch color-7"></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Repère pratique :</strong> Un fichier correctement adapté atteint généralement 80 à 90% en zone confortable et reste sous les 5% en zone problématique.</p>
+
+                <h3>Pourquoi ces seuils ?</h3>
+                
+                <p>La <strong>Charte Arcom 2011</strong> fixe un "temps de lecture approprié" à <strong>12 CPS</strong>, avec une tolérance de <strong>20%</strong> (soit environ 15 CPS).</p>
+                
+                <p>Au-delà de 15 CPS, le temps de lecture quitte la zone de confort pour aller vers l'inconfort "tolérable" (17 CPS).</p>
+                
+                <p>Pour information, <strong>17 CPS maximum</strong> est le standard Netflix pour les adultes, <strong>20 CPS</strong> étant la limite "dure" au-delà de laquelle le sous-titre est considéré comme illisible.</p>
+                
+                <p>Les catégories 5 à 7 ne sont donc pas rouges pour rien : il s'agit de vitesses de lecture irraisonnables.</p>
+                
+                <p>Il ne s'agit pourtant pas de les interdire, car le SME a des particularités qui autorisent à y recourir exceptionnellement (voir section suivante : Les limites du CPS).</p>
+
+            </div>
+        </details>
+
+        <!-- ============================================
+             SECTION 3 : Les limites du CPS
+        ============================================ -->
+        <details class="faq-item">
+            <summary>Les limites du CPS</summary>
+            <div class="faq-content">
+                
+                <h3>Le CPS ne suffit pas</h3>
+                
+                <p>Le CPS est un critère nécessaire mais non suffisant : des sous-titres peuvent être mal découpés, truffés de fautes et de contresens, tout en offrant un temps de lecture optimal.</p>
+
+                <h3>Quand le CPS ne doit pas primer</h3>
+                
+                <p>Certaines situations, fréquentes en SME, imposent d'ignorer cette mesure.</p>
+                
+                <p><strong>Par exemple :</strong></p>
+
+                <blockquote>
+                    <p>Lorsqu'un locuteur dit <em>malheureusement</em> face caméra, il ne faut pas écrire <em>hélas</em> dans le but d'éviter le rouge, car la différence n'est pas cinq caractères contre quinze, mais un mot contre un mot. <em>Malheureusement</em> est trois fois plus long mais ne demande pas trois fois plus de temps de lecture, et écrire <em>hélas</em> quand <em>malheureusement</em> se lit distinctement sur les lèvres entame la confiance du spectateur sourd envers le sous-titrage. <strong>Le respect de la cohérence labiale doit primer sur la concision typographique.</strong></p>
+                </blockquote>
+
+                <blockquote>
+                    <p>Les paroles de chanson doivent s'afficher au rythme du chant sans être reformulées. On ne touche pas aux poèmes : on ne va pas écrire <em>Demain, dès l'aube, à 5h</em> pour respecter le CPS.</p>
+                </blockquote>
+
+                <blockquote>
+                    <p>Quand deux personnes disent la même chose en écho, le temps de lecture n'est pas doublé, le CPS si :</p>
+                    <p style="margin-left: 20px;">
+                        <em>-Michel n'a pas d'alibi.</em><br>
+                        <em>-Michel n'a pas d'alibi ?</em>
+                    </p>
+                </blockquote>
+
+                <p>Les cas où le CPS doit passer en priorité secondaire sont nombreux en SME, mais ils restent globalement très marginaux sur la totalité d'un programme (sauf pour un concert de rap).</p>
+
+                <p>C'est précisément pour ces cas-là qu'avoir quelques pourcents de sous-titres "problématiques" ne l'est pas : c'est souvent la preuve que le sous-titreur a su faire preuve de discernement.</p>
+
+                <div class="warning-box">
+                    <p><strong>⚠️ Important :</strong> Cet outil ne délivre pas de certification de conformité. Il mesure un seul critère (le CPS) de manière objective. Les autres critères nécessitent un audit à part.</p>
+                </div>
+
+            </div>
+        </details>
+
+        <!-- ============================================
+             SECTION 4 : Le script de caviardage
+        ============================================ -->
+        <details class="faq-item">
+            <summary>Le script de caviardage</summary>
+            <div class="faq-content">
+                
+                <p>Un script Python est fourni pour permettre aux diffuseurs et laboratoires de publier des audits CPS sans révéler le contenu textuel des fichiers.</p>
+
+                <h3>Pourquoi ce script ?</h3>
+                
+                <p>Les fichiers de sous-titres contiennent le texte intégral des dialogues, protégé par le droit d'auteur.</p>
+                
+                <p>Le script de caviardage offre une solution : il remplace chaque caractère par un "X" tout en préservant les timecodes et la structure du fichier.</p>
+
+                <h3>Fonctionnement technique</h3>
+                
+                <p><strong>Fichier original :</strong></p>
+                <pre><code>00:01:23,456 --> 00:01:25,789
+Bonjour, comment allez-vous ?</code></pre>
+
+                <p><strong>Fichier caviardé :</strong></p>
+                <pre><code>00:01:23,456 --> 00:01:25,789
+XXXXXXX  XXXXXXX XXXXX-XXXX X</code></pre>
+
+                <div class="info-box">
+                    <p><strong>🔒 Garantie technique :</strong> Le résultat CPS est strictement identique au fichier original (même nombre de caractères, mêmes timecodes). Seul le contenu textuel est masqué.</p>
+                </div>
+
+                <p>Ainsi, les fichiers peuvent être partagés allègrement avec les associations de sourds et malentendants et qui veut vérifier ou étudier l'accessibilité des programmes.</p>
+
+                <div class="info-box">
+                    <p><strong>📥 Téléchargement :</strong> <a href="anonymize_srt.py" download>Script Python de caviardage</a></p>
+                    <p style="font-size: 0.9rem; color: #64748b;"><strong>Mode d'emploi :</strong> Glissez-déposez vos fichiers .srt ou .vtt sur le script.</p>
+                </div>
+
+            </div>
+        </details>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-links">
+                <a href="index.html">Accueil</a>
+                <a href="a-propos.html">À propos</a>
+                <a href="confidentialite.html">Confidentialité</a>
+                <a href="https://github.com/Alyoukaidi/cps-analyzer" target="_blank">Code source (GitHub)</a>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
