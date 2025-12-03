@@ -210,18 +210,20 @@
             <h2>Traitement des fichiers</h2>
             
             <h3>Sur l'outil d'analyse (Streamlit)</h3>
-            
+
             <ul>
-                <li>Les fichiers .srt sont traités <strong>en mémoire uniquement</strong></li>
-                <li><strong>Aucun fichier n'est enregistré</strong> sur le serveur</li>
-                <li><strong>Aucun contenu textuel n'est conservé</strong></li>
-                <li>Les fichiers sont <strong>automatiquement supprimés</strong> à la fin de votre session</li>
+                <li>Les fichiers .srt et .vtt que vous envoyez sont utilisés <strong>uniquement le temps de l'analyse</strong></li>
+                <li><strong>Aucun enregistrement persistant des fichiers n'est réalisé</strong> sur le serveur</li>
+                <li><strong>Aucun contenu textuel n'est volontairement conservé</strong> après le traitement</li>
+                <li>Les fichiers sont <strong>supprimés à la fin de votre session</strong></li>
                 <li>Aucune donnée n'est transmise à l'auteur de l'outil</li>
             </ul>
 
+
             <div class="info-box">
-                <p><strong>🔒 Garantie technique :</strong> Les fichiers transitent par le serveur pour l'analyse, mais ne sont jamais écrits sur disque. Ils restent en mémoire vive (RAM) le temps du traitement, puis sont immédiatement effacés.</p>
+                <p><strong>🔒 Garantie technique :</strong> Les fichiers transitent par le serveur pour l'analyse, mais ne font l'objet d'aucun enregistrement persistant par l'application. Ils sont traités en mémoire le temps du calcul, puis supprimés à la fin de la session.</p>
             </div>
+
 
             <h2>Données collectées</h2>
             
@@ -250,7 +252,7 @@
                 <li><strong>Outil d'analyse :</strong> Streamlit Cloud (Snowflake, États-Unis)</li>
             </ul>
             
-            <p>Ces services sont conformes aux standards internationaux de sécurité. Aucune donnée personnelle n'étant collectée, le RGPD (Règlement Général sur la Protection des Données) ne s'applique pas.</p>
+            <p>Ces services sont conformes aux standards internationaux de sécurité. L'auteur de l'outil ne met en œuvre aucun traitement de données personnelles au sens du RGPD. Les éventuels journaux techniques (logs) conservés par les hébergeurs restent sous leur seule responsabilité.</p>
 
             <h2>Vos droits</h2>
             
