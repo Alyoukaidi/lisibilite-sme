@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Outil gratuit d'audit CPS SME selon la Charte Arcom 2011. Analysez le temps de lecture (CPS) de vos fichiers de sous-titres.">
-    <title>Audit CPS SME - Charte Arcom 2011</title>
+    <title>Lisibilité SME - Audit CPS Charte Arcom 2011</title>
 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,6 +55,8 @@
             margin-bottom: 10px;
             letter-spacing: -0.5px;
             line-height: 1.2;
+            /* Optionnel : force les majuscules via CSS si vous écrivez en minuscules dans le HTML */
+            text-transform: uppercase; 
         }
 
         .subtitle {
@@ -290,28 +292,25 @@
 
     <header>
         <div class="container" style="padding-bottom: 0;">
-            <h1>AUDIT CPS SME</h1>
+            <h1>LISIBILITÉ SME</h1>
             <p class="subtitle">Analyse du temps de lecture selon la Charte Arcom 2011</p>
         </div>
     </header>
 
     <div class="container">
 
-        <!-- INTRO -->
         <section>
             <div class="intro">
                 Cet outil <strong>open source</strong> mesure la <strong>vitesse de défilement</strong> des sous-titres SME en CPS (Caractères Par Seconde). Il permet de vérifier si le sous-titrage respecte les seuils définis par la <em>Charte relative à la qualité du sous-titrage à destination des personnes sourdes ou malentendantes</em>.
             </div>
         </section>
 
-        <!-- CTA (en haut pour les pressés) -->
         <section class="cta-section">
             <a href="https://lisibilite-sme.streamlit.app" target="_blank" class="cta-button">
                 📊 Analyser un fichier
             </a>
         </section>
 
-        <!-- POURQUOI CETTE MESURE COMPTE -->
         <section>
             <h2>Le CPS : pourquoi cette mesure compte</h2>
             
@@ -326,12 +325,10 @@
             </div>
         </section>
 
-        <!-- CE QUE L'OUTIL RÉVÈLE (LAYOUT 2 COLONNES) -->
         <section>
             <h2>Ce que l'outil révèle</h2>
             
             <div class="reveal-layout">
-                <!-- COLONNE GAUCHE : Texte -->
                 <div>
                     <p>L'outil produit un rapport qui permet de voir en un coup d'œil si un fichier respecte <strong>globalement</strong> les temps de lecture de la Charte.</p>
     
@@ -340,7 +337,6 @@
                     </div>
                 </div>
                 
-                <!-- COLONNE DROITE : Image cliquable -->
                 <div class="screenshot">
                     <a href="affaire_conclue_screenshot.png" target="_blank" title="Cliquer pour agrandir">
                         <img src="affaire_conclue_screenshot.png" alt="Rapport d'audit CPS - Affaire conclue">
@@ -349,7 +345,6 @@
             </div>
         </section>
 
-        <!-- À QUI S'ADRESSE CET OUTIL -->
         <section>
             <h2>À qui s'adresse cet outil ?</h2>
             
@@ -385,7 +380,6 @@
             </ul>
         </section>
 
-        <!-- UN LEVIER POUR LE RÉGULATEUR -->
         <section>
             <h2>Un levier pour le régulateur</h2>
     
@@ -396,14 +390,12 @@
             <p>Pour partager des audits sans révéler le contenu des dialogues, consultez le <a href="methodologie.html#caviardage" style="color: var(--accent); font-weight: 600; text-decoration: none;">script de caviardage</a> dans la méthodologie.</p>
         </section>
 
-        <!-- CTA (en bas pour les convaincus) -->
         <section class="cta-section">
             <a href="https://lisibilite-sme.streamlit.app" target="_blank" class="cta-button">
                 📊 Analyser un fichier
             </a>
         </section>
 
-        <!-- FOOTER -->
         <footer>
             <div class="footer-links">
                 <a href="index.html">Accueil</a>
