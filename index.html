@@ -6,7 +6,6 @@
     <meta name="description" content="Outil gratuit d'audit CPS SME selon la Charte Arcom 2011. Analysez le temps de lecture (CPS) de vos fichiers de sous-titres.">
     <title>Lisibilité SME - Audit CPS Charte Arcom 2011</title>
 
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
@@ -55,8 +54,7 @@
             margin-bottom: 10px;
             letter-spacing: -0.5px;
             line-height: 1.2;
-            /* Optionnel : force les majuscules via CSS si vous écrivez en minuscules dans le HTML */
-            text-transform: uppercase; 
+            text-transform: uppercase; /* Force les majuscules */
         }
 
         .subtitle {
@@ -85,7 +83,6 @@
             padding-bottom: 12px;
         }
 
-        /* Underline courte élégante (Grok) */
         h2::after {
             content: '';
             position: absolute;
@@ -116,12 +113,12 @@
             text-align: justify;
         }
 
-        /* --- WARNING BOX (arrondie, Grok) --- */
+        /* --- WARNING BOX --- */
         .warning {
             background: var(--warning-bg);
             padding: 20px;
             border-left: 5px solid var(--warning-border);
-            border-radius: 0.5rem; /* Arrondi comme Grok */
+            border-radius: 0.5rem; 
             margin: 20px 0;
             font-size: 1rem;
         }
@@ -129,10 +126,10 @@
         .warning p { text-align: justify; }
         .warning strong { color: #c2410c; }
 
-        /* --- LAYOUT DEUX COLONNES pour "Ce que l'outil révèle" (GPT) --- */
+        /* --- LAYOUT DEUX COLONNES --- */
         .reveal-layout {
             display: grid;
-            grid-template-columns: 1.2fr 1fr; /* Texte légèrement plus large */
+            grid-template-columns: 1.2fr 1fr;
             gap: 30px;
             align-items: flex-start;
             margin-top: 20px;
@@ -155,7 +152,7 @@
             box-shadow: var(--shadow-md);
             display: block;
             margin: 0 auto;
-            cursor: pointer; /* Indique que l'image est cliquable */
+            cursor: pointer;
             transition: transform 0.2s;
         }
 
@@ -163,7 +160,6 @@
             transform: scale(1.02);
         }
 
-        /* Texte explicatif (colonne gauche) */
         .image-note {
             margin-top: 20px;
             font-size: 1rem;
@@ -183,7 +179,7 @@
 
         .image-note a:hover { text-decoration: underline; }
 
-        /* --- AUDIENCE LIST (GRID) --- */
+        /* --- AUDIENCE LIST --- */
         .audience-list {
             list-style: none;
             display: grid;
@@ -415,6 +411,9 @@
         </footer>
 
     </div>
+
+    <script data-goatcounter="https://lisibilite-sme.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>
